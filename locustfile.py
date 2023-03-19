@@ -6,7 +6,3 @@ class WebsiteUser(HttpUser):
     @task
     def index(self):
         self.client.get("/")
-        
-    @task
-    def prediction(self):
-        self.client.post("/predict/")
