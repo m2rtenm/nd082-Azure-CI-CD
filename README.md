@@ -1,12 +1,14 @@
 # Overview
 
+[![Python application test with Github Actions](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml/badge.svg?branch=main)](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml)
+
 <TODO: complete this with an overview of your project>
 
 ## Project Plan
 <TODO: Project Plan
 
-* A link to a Trello board for the project
-* A link to a spreadsheet that includes the original and final project plan>
+* A link to a Trello board for the project - [Trello board for the project](https://trello.com/b/K2zL9BSl/nd082-azure-devops-project-plan)
+* A link to a spreadsheet that includes the original and final project plan> [Google Spreadsheets Project plan](https://docs.google.com/spreadsheets/d/17agPpru1mXOnrbVipbrwf9mjVlIdUZzcj_kymhJ2JQ8/edit?usp=sharing)
 
 ## Instructions
 
@@ -49,4 +51,3 @@ Port: 443
 <TODO: Add link Screencast on YouTube>
 
 
-[![Python application test with Github Actions](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml/badge.svg?branch=main)](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml)
