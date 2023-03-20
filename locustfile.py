@@ -1,5 +1,6 @@
 from locust import HttpUser, between, task
 import random
+import json
 
 class WebsiteUser(HttpUser):
     wait_time = between(5, 15)
@@ -15,7 +16,7 @@ class WebsiteUser(HttpUser):
 
         """
         Documentation from: https://www.kaggle.com/c/boston-housing
-        
+
         CHAS: Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).
         RM: average number of rooms per dwelling.
         TAX: full-value property-tax rate per \$10,000.
