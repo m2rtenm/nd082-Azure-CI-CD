@@ -92,42 +92,98 @@ If you open the web app URL, then you should see something like this:
 
 ![Screenshot of local prediction](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/local_test_prediction.png?raw=true)
 
-## Configure Github Actions
+## Configuration of Github Actions
 
+### Create the Github Actions workflow
 
-<TODO:  
-* Architectural Diagram (Shows how key parts of the system work)>
+In Github go to Actions -> New workflow -> Set up a workflow yourself
 
-<TODO:  Instructions for running the Python project.  How could a user with no context run this project without asking you for any help.  Include screenshots with explicit steps to create that work. Be sure to at least include the following screenshots:
+Use this code to replace the default content of the template:
 
-* Project running on Azure App Service
+*Note:* For Python version, use at least version 3.7. In this project, version 3.9 has been used. Feel free to use a newer version.
 
-* Project cloned into Azure Cloud Shell
+```
+name: Python application test with Github Actions
 
-* Passing tests that are displayed after running the `make all` command from the `Makefile`
+on: [push]
 
-* Output of a test run
+jobs:
+  build:
 
-* Successful deploy of the project in Azure Pipelines.  [Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+    runs-on: ubuntu-latest
 
-* Running Azure App Service from Azure Pipelines automatic deployment
-
-* Successful prediction from deployed flask app in Azure Cloud Shell.  [Use this file as a template for the deployed prediction](https://github.com/udacity/nd082-Azure-Cloud-DevOps-Starter-Code/blob/master/C2-AgileDevelopmentwithAzure/project/starter_files/flask-sklearn/make_predict_azure_app.sh).
-The output should look similar to this:
-
-```bash
-udacity@Azure:~$ ./make_predict_azure_app.sh
-Port: 443
-{"prediction":[20.35373177134412]}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        make install
+    - name: Lint with pylint
+      run: |
+        make lint
+    - name: Test with pytest
+      run: |
+        make test
 ```
 
-* Output of streamed log files from deployed application
+Commit the yml file and after that, the build should contain a green mark. A successful build looks like this:
 
-> 
+![Screenshot of Github Actions](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/github_actions.png?raw=true)
+
+## Configuration of Azure Pipelines
+
+For configuring Azure Pipelines, please the [official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+
+The result of a successful deployment looks something like this:
+
+![Screenshot of the deployment](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/deployment_success.png?raw=true)
+
+## Verifying the application
+
+The project contains a file `make_predict_azure_app.sh` which sends a POST request to the web app to return with a prediction. The response looks something like this:
+
+![Screenshot of the Azure prediction](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/prediction_success.png?raw=true)
+
+### Logs for the application
+
+The following command helps to see application logs, for example the logs when the prediction has been made:
+```
+az webapp log tail -n nd082-marten
+```
+Note: Replace the -n parameter with your own App Service name that you have used for the project.
+
+The output of logs looks like this:
+![Screenshot of logs](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/logs_prediction.png?raw=true)
+
+### Load testing with Locust
+
+You have several options how to install Locust. In this project, it is specified in the `requirements.txt` but you can also install it manually like this:
+
+```
+pip install locust
+```
+
+To run the locustfile.py, use the following command:
+
+```
+locust -f locustfile.py
+```
+
+Open up http://localhost:8089/ in your browser and enter the URL of the project to the host field if not filled. In the advanced options, you can also specify the duration of the load test.
+
+![Screenshot of locust page](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/locust_test_start.png?raw=true)
+
+After running the load test, the results page looks like this:
+
+![Screenshot of locust results](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/locust_test_results.png?raw=true)
+
 
 ## Enhancements
 
-<TODO: A short description of how to improve the project in the future>
+An option would be to use Docker and/or Kubernetes for such projects. Another idea is to implement the backend in another programming language, for example C#. Definitely there should be several other branches existing in Github to separate environments (development, staging, production etc). A verification pipeline could be an option to ensure that testing in lower environments has been successful. Only then the deployment can be made in production.
 
 ## Demo 
 
