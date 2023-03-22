@@ -71,6 +71,8 @@ The output should be similar:
 az webapp up -n nd082-marten -l westeurope --sku FREE
 ```
 
+Note: For cost saving purposes, use the parameter `--sku FREE`
+
 The `az webapp up` command creates a web app and also a resource group which contains the App Service:
 
 ![Screenshot of App Service](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/app_service.png?raw=true)
@@ -135,7 +137,7 @@ Commit the yml file and after that, the build should contain a green mark. A suc
 
 ## Configuration of Azure Pipelines
 
-For configuring Azure Pipelines, please the [official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+For configuring Azure Pipelines, please use the [official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
 
 The result of a successful deployment looks something like this:
 
