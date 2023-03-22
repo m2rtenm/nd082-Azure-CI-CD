@@ -3,14 +3,12 @@
 [![Python application test with Github Actions](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml/badge.svg?branch=main)](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml)
 
 This project includes a Python Flask web app hosted in Azure which makes predictions for housing prices in Boston. It is a pretrained sklearn ML model.
-<TODO: complete this with an overview of your project>
 
 ## Architecture of the project
 
 ![Screenshot of the architecture](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/architecture.jpg?raw=true)
 
 ## Project Plan
-<TODO: Project Plan
 
 * A link to a Trello board for the project - [Trello board for the project](https://trello.com/b/K2zL9BSl/nd082-azure-devops-project-plan)
 * A link to a spreadsheet that includes the original and final project plan> [Google Spreadsheets Project plan](https://docs.google.com/spreadsheets/d/17agPpru1mXOnrbVipbrwf9mjVlIdUZzcj_kymhJ2JQ8/edit?usp=sharing)
@@ -190,5 +188,3 @@ An option would be to use Docker and/or Kubernetes for such projects. Another id
 ## Demo 
 
 <TODO: Add link Screencast on YouTube>
-
-
