@@ -2,7 +2,12 @@
 
 [![Python application test with Github Actions](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml/badge.svg?branch=main)](https://github.com/m2rtenm/nd082-Azure-CI-CD/actions/workflows/pythonapp.yml)
 
+This project includes a Python Flask web app hosted in Azure which makes predictions for housing prices in Boston. It is a pretrained sklearn ML model.
 <TODO: complete this with an overview of your project>
+
+## Architecture of the project
+
+![Screenshot of the architecture](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/architecture.jpg?raw=true)
 
 ## Project Plan
 <TODO: Project Plan
@@ -10,7 +15,85 @@
 * A link to a Trello board for the project - [Trello board for the project](https://trello.com/b/K2zL9BSl/nd082-azure-devops-project-plan)
 * A link to a spreadsheet that includes the original and final project plan> [Google Spreadsheets Project plan](https://docs.google.com/spreadsheets/d/17agPpru1mXOnrbVipbrwf9mjVlIdUZzcj_kymhJ2JQ8/edit?usp=sharing)
 
-## Instructions
+# Instructions
+
+## Set up Azure Cloud Shell
+
+### Dependencies
+
+* Create an account in [Azure](https://portal.azure.com)
+* Create an account in [Github](https://github.com)
+
+### Getting started
+
+* Open the Azure Cloud Shell
+* Create SSH keys for accessing the Github repo
+
+```bash
+ssh-keygen -t rsa
+```
+
+* Copy the public key file content: id_rsa.pub
+
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+* Add the public key content to your Github account (Settings -> SSH and GPG keys -> New SSH key)
+
+* Clone the repository to Azure Cloud Shell
+
+```bash
+git@github.com:m2rtenm/nd082-Azure-CI-CD.git
+```
+
+After cloning the repo you should be seeing a similar view:
+
+![Screenshot of git clone](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/az_cloud_shell_git_clone.png?raw=true)
+
+### Create a Python virtual environment
+
+```bash
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
+```
+
+### Prepare the virtual environment
+
+```
+make all
+```
+
+The output should be similar:
+![Screenshot of make all](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/make_all.png?raw=true)
+
+```
+az webapp up -n nd082-marten -l westeurope --sku FREE
+```
+
+The `az webapp up` command creates a web app and also a resource group which contains the App Service:
+
+![Screenshot of App Service](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/app_service.png?raw=true)
+
+NB! Don't forget to add a different name for the Web App. Every web app has to have a unique name.
+
+If you open the web app URL, then you should see something like this:
+
+![Screenshot of web app](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/project_running.png?raw=true)
+
+### How to run the app locally
+
+* Run `make all`
+* Run `python3 app.py` in Azure Cloud Shell
+
+![Screenshot of local app](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/local_test_app.png?raw=true)
+
+* Run `./make_prediction.sh` in a separate Azure Cloud Shell session
+
+![Screenshot of local prediction](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/local_test_prediction.png?raw=true)
+
+## Configure Github Actions
+
 
 <TODO:  
 * Architectural Diagram (Shows how key parts of the system work)>
