@@ -42,10 +42,10 @@ cat ~/.ssh/id_rsa.pub
 * Clone the repository to Azure Cloud Shell
 
 ```bash
-git@github.com:m2rtenm/nd082-Azure-CI-CD.git
+git clone git@github.com:m2rtenm/nd082-Azure-CI-CD.git
 ```
 
-After cloning the repo you should be seeing a similar view:
+After cloning the repo you should see a similar view:
 
 ![Screenshot of git clone](https://github.com/m2rtenm/nd082-Azure-CI-CD/blob/main/screenshots/az_cloud_shell_git_clone.png?raw=true)
 
